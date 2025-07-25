@@ -1,4 +1,5 @@
 #include "Board.h"
+#include "Snake.h"
 #include <exception>
 
 Board::Board(MT mapType)

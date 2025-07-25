@@ -1,16 +1,22 @@
 #include "Snake.h"
+#include "Board.h"
 
 Snake::Snake(int startX, int startY, int initialLength)
 {
 	board = new Board(blink);
 	_length = initialLength;
-	diraction = l;
-	// get the snake to place and add nodes as length
+	diraction = u;
+	body.push_front(std::make_tuple(startX, startY)); // place the snake heads
 }
 
 Snake::~Snake()
 {
 	delete board;
+}
+
+void Snake::change_diraction(Dircation new_diraction)
+{
+	this->diraction = new_diraction;
 }
 
 bool Snake::move(void)
@@ -58,11 +64,15 @@ bool Snake::move(void)
 	}
 
 	body.push_front(std::make_tuple(x, y));
-	board->draw(*this);
 	return true;
 }
 
 void Snake::eat(int x, int y)
 {
 	_length++;
+}
+
+std::list<std::tuple<int, int>> Snake::get_body(void) const
+{
+	return this->body;
 }
